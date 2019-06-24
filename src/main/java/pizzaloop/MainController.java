@@ -64,14 +64,7 @@ public class MainController {
         else {
             Status = 0;
         }
-        if(Status == 1){
 
-            System.out.println("ok bro");
-
-        }
-        else{
-            System.out.println("no");
-        }
         return Status;
     }
 
