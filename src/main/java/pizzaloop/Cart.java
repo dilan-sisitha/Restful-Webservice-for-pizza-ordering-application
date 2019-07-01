@@ -1,29 +1,32 @@
 package pizzaloop;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name= "cart")
+//@Table(name= "cart")
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id")
-    private int order_id;
-    @Column(name = "pizza_type")
+  // @Column(name = "orderId")
+    private Integer orderId;
+ //   @Column(name = "pizza_type")
     private String pizza_type;
-    @Column(name = "quantity")
+ //   @Column(name = "quantity")
     private String quantity;
-    @Column(name = "price")
+//   @Column(name = "price")
     private Double price;
 
-
-    public int getOrder_id() {
-        return order_id;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public String getPizza_type() {

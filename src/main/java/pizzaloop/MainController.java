@@ -170,8 +170,16 @@ public class MainController {
      */
     @GetMapping(path = "/deleteByPizzaId")
     public @ResponseBody
-    List<PizzaDetails> deletePizzaById(@RequestParam Integer id) {
+    List<PizzaDetails>deletePizzaById(@RequestParam Integer id) {
         return pizzaRepository.deleteByPizzaId(id);
+
+
+    }
+
+   @GetMapping(path = "/deleteByCartId")
+    public @ResponseBody
+    List<Cart>deleteByOrderId(@RequestParam Integer id) {
+        return cartRepository.deleteByOrderId(id);
 
 
     }
