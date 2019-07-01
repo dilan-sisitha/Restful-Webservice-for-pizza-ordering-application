@@ -16,11 +16,18 @@ public class MainController {
     @Autowired
     private UserRepositary userRepositary;
 
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private LoginDetailsRepository loginDetailsRepository;
+
     private static final String SUCCESS = "Saved";
 
     @GetMapping(path = "/userdata")
     public @ResponseBody
     Iterable<User> UserDetails() {
+        User user = new User();
         return userRepositary.findAll();
     }
 
@@ -40,6 +47,25 @@ public class MainController {
 
 
     }
+    @GetMapping(path = "/allcart")
+    public @ResponseBody
+    Iterable<Cart> getCartDetails() {
+
+        Cart cart = new Cart();
+        return cartRepository.findAll();
+
+
+    }
+    @GetMapping(path = "/login")
+    public @ResponseBody
+    Iterable<LoginDetails> getLoginDetails() {
+
+        LoginDetails pizzaDetails = new LoginDetails();
+        return loginDetailsRepository.findAll();
+
+
+    }
+
     private static int Status =0;
     @GetMapping(path = "/checkUser")
     public @ResponseBody
@@ -108,6 +134,32 @@ public class MainController {
 
         userRepositary.save(username);
         return SUCCESS;
+    }
+
+    @GetMapping(path = "/addlogin")
+    public @ResponseBody
+    String addlogin(@RequestParam String email) {
+        LoginDetails loginDetails = new LoginDetails();
+        loginDetails.setEmail(email);
+
+
+        loginDetailsRepository.save(loginDetails);
+        return SUCCESS;
+    }
+
+
+    @GetMapping(path = "/addcart")
+    public @ResponseBody
+    String addNeCart(@RequestParam String pizza_type, @RequestParam String quantity, @RequestParam Double price) {
+        Cart cartdetails = new Cart();
+        cartdetails.setPizza_type(pizza_type);
+        cartdetails.setQuantity(quantity);
+        cartdetails.setPrice(price);
+
+
+        cartRepository.save(cartdetails);
+        return SUCCESS;
+
     }
 
     /*
