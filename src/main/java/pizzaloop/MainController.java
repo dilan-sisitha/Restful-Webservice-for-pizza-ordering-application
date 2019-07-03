@@ -22,6 +22,12 @@ public class MainController {
     @Autowired
     private LoginDetailsRepository loginDetailsRepository;
 
+    @Autowired
+    private CardPaymentRepository cardPaymentRepository;
+
+    @Autowired
+    private CashPaymentRepository cashPaymentRepository;
+
     private static final String SUCCESS = "Saved";
 
     @GetMapping(path = "/userdata")
@@ -160,6 +166,32 @@ public class MainController {
         cartRepository.save(cartdetails);
         return SUCCESS;
 
+    }
+
+    @GetMapping(path = "/payadd")
+    public @ResponseBody
+    String addPay(@RequestParam String cardName, @RequestParam String cardNum, @RequestParam String expDate, @RequestParam String veriNum) {
+        CardPayment cardPayment = new CardPayment();
+        cardPayment.setCardName(cardName);
+        cardPayment.setCardNum(cardNum);
+        cardPayment.setExpDate(expDate);
+        cardPayment.setVeriNum(veriNum);
+
+        cardPaymentRepository.save(cardPayment);
+        return SUCCESS;
+    }
+
+    @GetMapping(path = "/cashPayadd")
+    public @ResponseBody
+    String addcashPay(@RequestParam String username, @RequestParam String address, @RequestParam String telephone, @RequestParam String comment) {
+        CashPayment cashPayment = new CashPayment();
+        cashPayment.setUserName(username);
+        cashPayment.setAddress(address);
+        cashPayment.setTelephone(telephone);
+        cashPayment.setComment(comment);
+
+        cashPaymentRepository.save(cashPayment);
+        return SUCCESS;
     }
 
     /*
