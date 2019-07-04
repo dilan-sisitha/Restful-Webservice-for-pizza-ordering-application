@@ -21,6 +21,16 @@ public class Cart {
 //   @Column(name = "price")
     private Double price;
 
+    private Double unitPrice;
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
     public Integer getOrderId() {
         return orderId;
     }

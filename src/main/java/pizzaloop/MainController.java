@@ -156,11 +156,12 @@ public class MainController {
 
     @GetMapping(path = "/addcart")
     public @ResponseBody
-    String addNeCart(@RequestParam String pizza_type, @RequestParam String quantity, @RequestParam Double price) {
+    String addNeCart(@RequestParam String pizza_type, @RequestParam String quantity, @RequestParam Double price, @RequestParam Double unitprice) {
         Cart cartdetails = new Cart();
         cartdetails.setPizza_type(pizza_type);
         cartdetails.setQuantity(quantity);
         cartdetails.setPrice(price);
+        cartdetails.setUnitPrice(unitprice);
 
 
         cartRepository.save(cartdetails);
@@ -243,7 +244,7 @@ public class MainController {
 
 
 
-    // URI to access this: http://localhost:8080/demo/updatecart?id=1&quantity=10
+    // URI to access this: http://localhost:8080/demo/updatecart?id=1&quantity=10&price=100.0
 
    @GetMapping(path = "/updatecart")
     public @ResponseBody
