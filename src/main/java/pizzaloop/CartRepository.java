@@ -12,6 +12,8 @@ public interface CartRepository extends CrudRepository<Cart, Integer>{
 
 
        List<Cart>deleteByOrderId(Integer id);
+       List<Cart>findByOrderId(Integer id);
+
 
 
 }

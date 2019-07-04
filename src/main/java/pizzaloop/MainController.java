@@ -242,4 +242,27 @@ public class MainController {
     }
 
 
+
+    // URI to access this: http://localhost:8080/demo/updatecart?id=1&quantity=10
+
+   @GetMapping(path = "/updatecart")
+    public @ResponseBody
+    List<Cart> updateCartDetails(@RequestParam Integer id, @RequestParam String quantity,@RequestParam Double price) {
+        //First get all the pizza details according to the provided ID
+        List<Cart> cartList = cartRepository.findByOrderId(id);
+        if (!cartList.isEmpty()) {
+            //Iterate through the pizza list
+            for (Cart cart : cartList) {
+                //Set new values
+                cart.setQuantity(quantity);
+                cart.setPrice(price);
+                //Update existing pizza item
+                cartRepository.save(cart);
+            }
+        }
+        return cartRepository.findByOrderId(id);
+    }
+
+
+
 }
